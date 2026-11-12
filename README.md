@@ -18,7 +18,7 @@ npm start
 
 ## Admin demo
 
-Open `/admin`. The demo login accepts `admin@giftokhussa.com` and any non-empty password. Use **Store settings** to edit contact, WhatsApp, shipping and policy copy. Before production, replace the demo login with a server-side session and hashed password flow, then rotate the admin email and password.
+Open `/admin`. The demo login uses `admin@giftokhussa.com` with temporary password `G1fto!Lahore#2026`. Use **Store settings** to edit contact, WhatsApp, shipping and policy copy. Before production, replace the demo login with a server-side session and hashed password flow, then rotate the admin email and password.
 
 ## Supabase connection
 

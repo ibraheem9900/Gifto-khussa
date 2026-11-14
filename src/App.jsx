@@ -60,17 +60,24 @@ function Wordmark({ light = false }) {
 
 function Header({ cartQty, wishlistQty, mobileOpen, setMobileOpen, settings }) {
   const [hidden, setHidden] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(() => window.matchMedia('(max-width: 768px)').matches);
   useEffect(() => {
     let lastY = window.scrollY;
     const onScroll = () => { const next = window.scrollY; setHidden(next > lastY && next > 120); lastY = next; };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 768px)');
+    const onChange = event => setIsMobileViewport(event.matches);
+    media.addEventListener?.('change', onChange);
+    return () => media.removeEventListener?.('change', onChange);
+  }, []);
   return <>
     <div className="announcement"><span>{settings.announcement}</span><Link to="/shop">Explore the edit <ArrowRight size={13} /></Link></div>
     <header className={`site-header ${hidden ? 'header-hidden' : ''}`}>
       <div className="header-inner">
-        <button className="icon-button mobile-only" onClick={() => setMobileOpen(true)} aria-label="Open menu"><Menu size={22} /></button>
+        {isMobileViewport && <button className="icon-button menu-trigger" onClick={() => setMobileOpen(true)} aria-label="Open menu"><Menu size={24} strokeWidth={2.2} /></button>}
         <Wordmark />
         <nav className="desktop-nav" aria-label="Primary navigation">
           <Link to="/shop">Shop</Link><Link to="/about">Our craft</Link><Link to="/outlets">Visit us</Link><Link to="/contact">Contact</Link>

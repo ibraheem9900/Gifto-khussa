@@ -35,3 +35,10 @@ body.lenis { overflow-x: hidden; }
   .loading-icon, .smart-image { animation: none; }
   .smart-image img { transition: none; }
 }
+
+
+/* Viewport-aware menu trigger: render only on mobile, never rely on inherited display rules. */
+.menu-trigger { display: none !important; }
+@media (max-width: 768px) {
+  .menu-trigger { display: grid !important; flex: 0 0 42px; }
+}
